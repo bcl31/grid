@@ -8,7 +8,7 @@ def create_grid(filename):
     for row_location in range(row_number):
         row = []
         for item_pos in range(row_width):
-            row.append(grid_info.readline())
+            row.append(int(grid_info.readline()))
         grid.append(row)
     return grid
 
