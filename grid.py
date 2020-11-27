@@ -73,7 +73,7 @@ def sum_of_neighbors(grid):
         row = []
         for column_index in range(len(grid[0])):
 
-            # find the neighbors of the tile, then the sum of those nighbors and append it to the row list
+            # find the neighbors of the tile, then the sum of those neighbors and append it to the row list
             neighbors = find_neighbors(row_index, column_index, grid)
             neighbor_sum = sum(neighbors)
             row.append(neighbor_sum)
