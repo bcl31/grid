@@ -1,3 +1,7 @@
+# Grid is a simple software used to plot data into a 2d grid and perform simple operations on it.
+# currently, grid is configured to plot the data provided in "data_1.txt" into a 2d grid, then create a new grid
+# configured to display the sum of each tile's neighbors in each tile.
+
 
 # filename is a string representing the name of a file
 
