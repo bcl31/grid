@@ -1,3 +1,7 @@
+# Grid is a simple software used to plot data into a 2d grid and perform simple operations on it.
+# currently, grid is configured to plot the data provided in "data_1.txt" into a 2d grid, then create a new grid
+# configured to display the sum of each tile's neighbors in each tile.
+
 
 # filename is a string representing the name of a file
 
@@ -39,9 +43,58 @@ def display_grid(grid):
         print(row_str)
 
 
+# row_index is an int representing the row index
+# col_index is an int representing the column index
+# gris is a two dimensional nested list
+
+# Find all the neighbors of a particular cell in the grid.
+def find_neighbors(row_index, col_index, grid):
+
+    # find the range of indexes around the provided tile
+    row_range = range(row_index - 1, row_index + 2)
+    col_range = range(col_index - 1, col_index + 2)
+
+    # check each index around the tile, if it is valid and not the index of the initial tile, add it's value to the list
+    neighbors = []
+    for row in row_range:
+        if 0 <= row < len(grid):
+            for column in col_range:
+                if 0 <= column < len(grid[0]):
+                    if row != row_index or column != col_index:
+                        neighbors.append(grid[row][column])
+    return neighbors
+
+
+# grid is a two dimensional nested list
+
+# Uses the find_neighbors(row_index, col_index, grid) function to return a new two dimensional nested list
+# that depicts the sum of neighbors in each cell respectively.
+def sum_of_neighbors(grid):
+    sum_grid = []
+
+    # go through each tile in the grid
+    for row_index in range(len(grid)):
+        row = []
+        for column_index in range(len(grid[0])):
+
+            # find the neighbors of the tile, then the sum of those neighbors and append it to the row list
+            neighbors = find_neighbors(row_index, column_index, grid)
+            neighbor_sum = sum(neighbors)
+            row.append(neighbor_sum)
+
+        # once a row is finished, append it to the grid
+        sum_grid.append(row)
+    return sum_grid
+
+
 def main():
-    grid = create_grid("data_1.txt")
+    file_name = "data_1.txt"
+    grid = create_grid(file_name)
+    print("This is our grid: ")
     display_grid(grid)
+    print("\n This is our newly calculated grid: ")
+    sum_grid = sum_of_neighbors(grid)
+    display_grid(sum_grid)
 
 
 main()
